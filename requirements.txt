@@ -4,4 +4,5 @@ opencv-python
 imutils
 pdfminer
 pdf2image
-gunicorn
+gunicorn==19.0.0 
+Werkzeug
