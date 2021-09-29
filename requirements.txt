@@ -1,6 +1,6 @@
 flask
 numpy
-opencv-python-headless==4.2.0.32
+opencv-python-headless
 imutils
 pdfminer
 pdf2image
