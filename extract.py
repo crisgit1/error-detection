@@ -28,6 +28,7 @@ def convert_to_png(path):
         lst_coordinates = extract_shapes(_tmp)
         safe_delete(_tmp)
 
+    print("Finished converting to png " + path)
     return lst_coordinates
 
 def extract_shapes(path):
@@ -66,6 +67,7 @@ def extract_shapes(path):
         lst.append(center)
         
 
+    print("Finished extracting shapes from " + path)
     cv2.imwrite(_tmp, image)
     return lst
 
