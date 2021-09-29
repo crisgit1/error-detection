@@ -22,7 +22,7 @@ def safe_delete(img_png):
 
 def convert_to_png(path):
     print("Converting to png " + path)
-    image = convert_from_path(path, poppler_path=r"C:\poppler-0.68.0\bin")
+    image = convert_from_path(path)
     for img_png in image:
         img_png.save(_tmp, _format)
         lst_coordinates = extract_shapes(_tmp)
