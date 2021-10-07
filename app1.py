@@ -4,6 +4,7 @@ import extract
 import json
 import os, glob
 import sys
+from xcl import convert
 
 app = Flask(__name__)
 
@@ -32,6 +33,9 @@ def upload_file():
     
       with open(data_json, "w") as file:
           json.dump(data, file, indent=2)
+
+      output = "output.csv"
+      convert(data, output)
       
       # Deleting pdfs
       filespath = glob.glob(os.path.join(real_path, "**", "*.pdf"), recursive = True)
@@ -39,13 +43,9 @@ def upload_file():
          extract.safe_delete(files)
 
       try:
-         return send_file(data_json, attachment_filename='data.json',  as_attachment=True)
+         return send_file(output, attachment_filename=output,  as_attachment=True)
       except Exception as e:
          return str(e)
-
-
-
-   
 
 if __name__ == '__main__':
    app.run(debug = False)

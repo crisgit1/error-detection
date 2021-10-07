@@ -28,7 +28,6 @@ def convert_to_png(path):
         lst_coordinates = extract_shapes(_tmp)
         safe_delete(_tmp)
 
-    print("Finished converting to png " + path)
     return lst_coordinates
 
 def extract_shapes(path):
@@ -55,9 +54,12 @@ def extract_shapes(path):
     cnts = cv2.findContours(shapeMask.copy(), cv2.RETR_EXTERNAL,
         cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
+
+    cnts = [each for each in cnts if cv2.contourArea(each) >= 100]
        
     # loop over the contours
     lst=[]
+    print(len(cnts))
     for c in cnts:
         # draw the contour and show it
         cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
@@ -67,8 +69,7 @@ def extract_shapes(path):
         lst.append(center)
         
 
-    print("Finished extracting shapes from " + path)
-    cv2.imwrite(_tmp, image)
+        cv2.imwrite(_tmp, image)
     return lst
 
 def main(folder_path, output_file):
