@@ -1,9 +1,9 @@
 import json
 import csv, sys
 
-def convert(data_json, output="output.json"):
-    if type(data_json)== str:
-        with open(data_json, "r") as file:
+def convert(data, output="output.csv"):
+    if type(data)== str:
+        with open(data, "r") as file:
             data = json.load(file)
 
     header = ["Document Name", "Coordinate Location"]
